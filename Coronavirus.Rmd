@@ -17,7 +17,8 @@ library(plotly)
 source('scripts/global.R')
 ```
 
-# Situation mondiale
+Situation mondiale
+=======================================================================
 
 Column {data-width=2/3}
 -----------------------------------------------------------------------
@@ -89,3 +90,35 @@ renderTable({
 ```
 
 >*Taux = nombre de rétablissements ou morts sur les cas recensés
+
+Evolution {data-orientation=rows}
+=======================================================================
+
+Inputs {.sidebar}
+-------------------------------------
+
+```{r}
+# shiny inputs defined here
+```
+
+Row {data-height=1/2}
+-------------------------------------
+
+### Situation géographique
+
+```{r}
+```
+
+
+Row {data-height=1/2}
+-------------------------------------
+   
+### Evolution dans la région
+
+```{r}
+```   
+    
+### Taux
+
+```{r}
+```

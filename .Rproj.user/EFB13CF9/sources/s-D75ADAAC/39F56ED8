@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1582626113761.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3863217720",
+    "id" : "39F56ED8",
+    "lastKnownWriteTime" : 1582626116,
+    "last_content_update" : 1582626116349,
+    "path" : "D:/PROJECTS/Covid-19/Coronavirus.Rmd",
+    "project_path" : "Coronavirus.Rmd",
+    "properties" : {
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

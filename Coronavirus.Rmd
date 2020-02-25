@@ -92,7 +92,10 @@ renderTable({
 
 >*Taux = nombre de rétablissements ou morts sur les cas recensés
 
-Evolution {data-orientation=rows}
+
+
+
+Evolution régionale {data-orientation=rows}
 =======================================================================
 
 Inputs {.sidebar}
@@ -102,6 +105,12 @@ Inputs {.sidebar}
 selectInput("region", label = "Région:",
             choices = regions, selected = "Monde")
 ```
+
+```{r}
+selectInput("colonne", label = "Situation:",
+            choices = c("Cas", "Retablis", "Morts"), selected = "Cas")
+```
+
 ```{r}
 t <- min(ncol(T_cas), ncol(T_retablis), ncol(T_morts)) - 4
 
@@ -117,7 +126,7 @@ Row {data-height=1/2}
 
 ```{r}
 renderPlotly(
-  map_evolution(input$region, input$time)
+  map_evolution(input$region, input$time, input$colonne)
 )
 ```
 

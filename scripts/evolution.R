@@ -5,15 +5,15 @@ regions <- latest() %>%
   na.omit() %>% unlist() %>% as.vector() %>% c("Monde")
 
 #############################################################
-map_evolution <- function(region, time){
+
+map_evolution <- function(region, time, colonne){
   #' Renvoie un plotly en de la région à un moment t
   #' region: Région/Continent
   #' time: argument t de latest, t >= 1
-  
   if (region == "Asia"){
     long <- 94
     lat <- 40
-    zoom <- 2.1
+    zoom <- 2
   }else if (region == "North America"){
     long <- -102
     lat <- 55
@@ -37,17 +37,27 @@ map_evolution <- function(region, time){
   }else{
     long <- 18
     lat <- 35
-    zoom <- 1
+    zoom <- 1.2
+  }
+  
+  if (colonne == "Morts"){
+    color <- "sandybrown"
+  } else if (colonne == "Retablis"){
+    color <- "seagreen"
+  } else {
+    color <- "red"
   }
   
   plot <- latest(time) %>%
     mutate(info = paste0("Nombre de cas: ", Cas,
                          "\n Retablis: ", Retablis,
-                         "\n Deces: ", Morts)) %>%
+                         "\n Deces: ", Morts),
+           value = .[[colonne]]
+    ) %>%
     plot_ly(
       lat = ~Lat,
       lon = ~Long,
-      marker = list(color = 'red', size = ~log(1+Cas), sizeref=0.1, opacity=0.4),
+      marker = list(color = color, size = ~log(1+value), sizeref=0.1, opacity=0.4),
       type = 'scattermapbox',
       text = ~State,
       hovertext = ~info,
@@ -58,8 +68,9 @@ map_evolution <- function(region, time){
       )) %>%
     layout(
       title = paste0("\n<b>", region,
-                     "</b>: situation en <b>",
-                     as.Date(names(T_cas)[time+4], "%m/%d/%y"),"</b>"),
+                     "</b>: <b style='color:",color,"'>", colonne,
+                     "</b> au <b>", as.Date(names(T_cas)[time], "%m/%d/%y"),
+                     "</b>"),
       mapbox = list(
         style = 'carto-positron',
         zoom = zoom,

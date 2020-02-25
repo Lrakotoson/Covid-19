@@ -1,0 +1,91 @@
+---
+title: "Coronavirus"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: united
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+```
+```{r global, include=FALSE}
+source('scripts/global.R')
+```
+
+# Situation mondiale
+
+Column {data-width=2/3}
+-----------------------------------------------------------------------
+
+### Nombre de cas
+
+```{r}
+renderPlotly(
+  worldmap <- latest() %>%
+    mutate(info = paste0("Nombre de cas: ", Cas,
+                         "\n Rétablis: ", Retablis,
+                         "\n Décès: ", Morts)) %>%
+    plot_ly(
+      lat = ~Lat,
+      lon = ~Long,
+      marker = list(color = 'red', size = ~log(1+Cas), sizeref=0.1, opacity=0.4),
+      type = 'scattermapbox',
+      text = ~State,
+      hovertext = ~info,
+      hovertemplate = paste(
+        "<b>%{text}</b><br><br>",
+        "%{hovertext}",
+        "<extra></extra>"
+      )) %>%
+    layout(
+      mapbox = list(
+        style = 'carto-positron',
+        zoom = 1.2,
+        center = list(lon = 18, lat= 35)),
+      margin = list(
+        l = 0, r = 0,
+        b = 0, t = 0,
+        pad = 0
+      )
+    )
+)
+
+```
+
+Column {data-width=1/3}
+-----------------------------------------------------------------------
+### Cas recencés
+
+```{r}
+cas_r <- brief()$Cas
+valueBox(cas_r, icon = "fa-procedures", color="danger")
+```
+
+### Taux* de rétablissement
+
+```{r}
+retablis_r <- round(brief()$Retablis*100/brief()$Cas, 2)
+valueBox(paste(retablis_r, '%'), icon = "fa-plus", color="success")
+```
+
+### Taux* de mortalité
+
+```{r}
+morts_r <- round(brief()$Morts*100/brief()$Cas, 2)
+valueBox(paste(morts_r, '%'), icon = "fa-dizzy", color="warning")
+```
+
+### Actus {.no-title}
+
+```{r}
+renderTable({
+  suppressWarnings(actus()) %>% rename("A la une" = Actus)
+  },sanitize.text.function = function(x) x)
+```
+
+>*Taux = nombre de rétablissements ou morts sur les cas recensés

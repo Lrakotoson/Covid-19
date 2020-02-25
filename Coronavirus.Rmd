@@ -1,5 +1,5 @@
 ---
-title: "Coronavirus"
+title: "COVID-19"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -12,6 +12,7 @@ runtime: shiny
 library(flexdashboard)
 library(tidyverse)
 library(plotly)
+library(rAmCharts)
 ```
 ```{r global, include=FALSE}
 source('scripts/global.R')
@@ -100,9 +101,11 @@ Evolution régionale {data-orientation=rows}
 
 Inputs {.sidebar}
 -------------------------------------
+<h3>Test h3</h3>
+Text __bold__
 
 ```{r}
-selectInput("region", label = "Région:",
+selectInput("region", label = h4("Région:"),
             choices = regions, selected = "Monde")
 ```
 
@@ -116,6 +119,10 @@ t <- min(ncol(T_cas), ncol(T_retablis), ncol(T_morts)) - 4
 
 sliderInput("time", label = "Relevé:",
             min = 1, max = t, value = t, step = 1)
+```
+
+```{r}
+checkboxInput("logscale", "Echelle logarithmique", value = FALSE)
 ```
 
 
@@ -137,9 +144,11 @@ Row {data-height=1/2}
 ### Evolution dans la région
 
 ```{r}
+renderAmCharts(ts_evolution(input$region, input$logscale))
 ```   
     
 ### Taux
 
 ```{r}
+renderAmCharts(rate_evolution(input$region))
 ```

@@ -122,3 +122,42 @@ timeserie <- function(region = "Monde"){
   
   return(data)
 }
+#############################################################
+
+ts_evolution <- function(region = "Monde", logscale = F){
+  #' Renvoie un ramCharts de l'évolution au cours du temps
+  #' region: Region/Continent
+  #' logscale: bool, échelle logarithmique
+  
+  data <- timeserie(region)
+  if (logscale){
+    data <- data %>%
+      mutate(Cas = log(Cas+1), Morts = log(Morts+1), Retablis = log(Retablis+1))
+  }
+  
+  plot <- data %>%
+    mutate(Date = as.POSIXct(paste(Date, "00:00:00"))) %>%
+    amTimeSeries("Date", c("Cas", "Retablis", "Morts"),
+                 color = c("#b33939", "#16a085", "#e67e22"),
+                 type = "smoothedLine",
+                 fillAlphas = c(0.1, 0.2, 0.3),
+                 main = paste("Evolution:", region)
+    )
+  return(plot)
+}
+#############################################################
+
+rate_evolution <- function(region = "Monde"){
+  #' Renvoie un ramCharts des taux au cours du temps
+  #' region: Region/Continent
+  
+  plot <- timeserie(region) %>%
+    mutate(Date = as.POSIXct(paste(Date, "00:00:00"))) %>%
+    amTimeSeries("Date", c("taux retablissement", "taux de mortalite"),
+                 color = c("#16a085", "#e67e22"),
+                 type = "smoothedLine",
+                 fillAlphas = 0.2,
+                 main = paste("Taux (%) :", region)
+    )
+  return(plot)
+}

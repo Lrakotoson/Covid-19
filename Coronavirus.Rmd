@@ -15,6 +15,7 @@ library(plotly)
 ```
 ```{r global, include=FALSE}
 source('scripts/global.R')
+source('scripts/evolution.R')
 ```
 
 Situation mondiale
@@ -98,8 +99,16 @@ Inputs {.sidebar}
 -------------------------------------
 
 ```{r}
-# shiny inputs defined here
+selectInput("region", label = "Région:",
+            choices = regions, selected = "Monde")
 ```
+```{r}
+t <- min(ncol(T_cas), ncol(T_retablis), ncol(T_morts)) - 4
+
+sliderInput("time", label = "Relevé:",
+            min = 1, max = t, value = t, step = 1)
+```
+
 
 Row {data-height=1/2}
 -------------------------------------
@@ -107,6 +116,9 @@ Row {data-height=1/2}
 ### Situation géographique
 
 ```{r}
+renderPlotly(
+  map_evolution(input$region, input$time)
+)
 ```
 
 

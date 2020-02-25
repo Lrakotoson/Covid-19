@@ -1,5 +1,7 @@
 library(tidyverse)
 
+#############################################################
+
 regions <- latest() %>%
   distinct(Continent = as.character(Continent)) %>%
   na.omit() %>% unlist() %>% as.vector() %>% c("Monde")
@@ -82,4 +84,41 @@ map_evolution <- function(region, time, colonne){
       )
     )
   return(plot)
+}
+#############################################################
+
+timeserie <- function(region = "Monde"){
+  #' Renvoie un tibble des données en séries temporelles
+  #' region: Region/Continent
+  
+  fusion <- function(table, name, region = "Monde"){
+    #' Renvoie un tibble de la table en série temporelle
+    #' name: nom de la variable Cas/Morts/Retablis
+    #' region: Region/Continent
+    
+    if (region != "Monde"){
+      table <- table %>%
+        mutate(Region = continent(Long, Lat)) %>%
+        filter(Region  == region) %>%
+        select(-Region)
+    }
+    table<- table %>% 
+      select(-c(1:4)) %>%
+      replace(is.na(.), 0) %>%
+      summarise_all(funs(sum)) %>%
+      gather(key = "Date") %>%
+      mutate(Date = as.Date(Date,format="%m/%d/%y")) %>%
+      rename(!!name := value)
+    return(table)
+  }
+  
+  data <- fusion(T_cas, "Cas", region) %>%
+    left_join(fusion(T_retablis, "Retablis", region), "Date") %>% 
+    left_join(fusion(T_morts, "Morts", region), "Date") %>% 
+    mutate(
+      `taux retablissement` = ifelse(Cas == 0, 0, round(Retablis*100/Cas, 2)),
+      `taux de mortalite` = ifelse(Cas == 0, 0, round(Morts*100/Cas, 2))
+    )
+  
+  return(data)
 }

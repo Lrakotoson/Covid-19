@@ -7,7 +7,7 @@ output:
     theme: united
     favicon: www/favicon.ico
     includes:
-      in_header: meta.html
+      in_header: www/meta.html
     navbar:
       - { title: "<i class='fab fa-github fa-lg'></i> &nbsp; Credits",
           href: "https://github.com/Lrakotoson/Covid-19" }

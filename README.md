@@ -2,7 +2,7 @@
 <div align="center">
  
 <a href="https://loicrakotoson.com/Covid-19/">
-<img src="https://repository-images.githubusercontent.com/242967832/e1f65f00-584c-11ea-94ab-bfae07c4b42d" height="250px" />
+<img src="https://repository-images.githubusercontent.com/242967832/e1f65f00-584c-11ea-94ab-bfae07c4b42d"  width="60%" style="min-height:'250px'"/>
 </a>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->

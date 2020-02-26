@@ -5,6 +5,10 @@ output:
     orientation: columns
     vertical_layout: fill
     theme: united
+    favicon: www/favicon.ico
+    navbar:
+      - { title: "<i class='fab fa-github fa-lg'></i> &nbsp; Credits",
+          href: "https://github.com/Lrakotoson/Covid-19" }
 runtime: shiny
 ---
 
@@ -96,15 +100,14 @@ renderTable({
 
 
 
-Evolution régionale {data-orientation=rows}
+Evolution regionale {data-orientation=rows}
 =======================================================================
 
 Inputs {.sidebar}
 -------------------------------------
 
 <h3>Analyse par région</h3>
-On définit par __région__ les continents.
-L'actualisation de cette variable globale permet de mettre à jour les 3 fenêtres sur la région à analyser.
+L'actualisation de cette variable globale permet la mise à jour des 3 fenêtres.
 
 ```{r}
 selectInput("region", label = h5("Région:"),
@@ -129,12 +132,13 @@ sliderInput("time", label = "Relevé:",
 
 <hr>
 <h4>Analyse en fonction du temps</h4>
-Visualisation en échelle logarithmique pour rendre compte des échelles de grandeur.
+Rendre compte des échelles de grandeur:
 
 ```{r}
 checkboxInput("logscale", "Echelle logarithmique", value = FALSE)
 ```
 
+__Ajustement de la période sous chaque graphe.__
 
 Row {data-height=1/2}
 -------------------------------------

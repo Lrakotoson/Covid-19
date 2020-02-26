@@ -101,13 +101,19 @@ Evolution régionale {data-orientation=rows}
 
 Inputs {.sidebar}
 -------------------------------------
-<h3>Test h3</h3>
-Text __bold__
+
+<h3>Analyse par région</h3>
+On définit par __région__ les continents.
+L'actualisation de cette variable globale permet de mettre à jour les 3 fenêtres sur la région à analyser.
 
 ```{r}
-selectInput("region", label = h4("Région:"),
+selectInput("region", label = h5("Région:"),
             choices = regions, selected = "Monde")
 ```
+
+<hr>
+<h4>Analyse de la carte</h4>
+Analyse de la répartition géographique des __cas__/ __rétablis__/ __morts__ en fonction du __temps__.
 
 ```{r}
 selectInput("colonne", label = "Situation:",
@@ -120,6 +126,10 @@ t <- min(ncol(T_cas), ncol(T_retablis), ncol(T_morts)) - 4
 sliderInput("time", label = "Relevé:",
             min = 1, max = t, value = t, step = 1)
 ```
+
+<hr>
+<h4>Analyse en fonction du temps</h4>
+Visualisation en échelle logarithmique pour rendre compte des échelles de grandeur.
 
 ```{r}
 checkboxInput("logscale", "Echelle logarithmique", value = FALSE)

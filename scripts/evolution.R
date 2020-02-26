@@ -71,7 +71,7 @@ map_evolution <- function(region, time, colonne){
     layout(
       title = paste0("\n<b>", region,
                      "</b>: <b style='color:",color,"'>", colonne,
-                     "</b> au <b>", as.Date(names(T_cas)[time], "%m/%d/%y"),
+                     "</b> au <b>", as.Date(names(T_cas)[time+4], "%m/%d/%y"),
                      "</b>"),
       mapbox = list(
         style = 'carto-positron',

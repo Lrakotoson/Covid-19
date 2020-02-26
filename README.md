@@ -1,8 +1,20 @@
 # Covid-19
+<div align="center">
+<img src="https://repository-images.githubusercontent.com/242967832/e1f65f00-584c-11ea-94ab-bfae07c4b42d" height="250px" />
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=for-the-badge)](#contributors-)
+![GitHub](https://img.shields.io/github/license/Lrakotoson/Covid-19?style=for-the-badge)
+[![Work](https://img.shields.io/badge/kernel-shiny-blue?style=for-the-badge&logo=R)](https://loicrakotoson.com/Covid-19/)
+
+Dashboard to follow in real time the evolution of Coronavirus in the World.  
+[**Dashboard link**](https://loicrakotoson.com/Covid-19/)
+
+</div>
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-Dashboard to follow in real time the evolution of Coronavirus in the World
+
 
 ## Contributors ✨
 

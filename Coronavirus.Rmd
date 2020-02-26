@@ -1,0 +1,146 @@
+---
+title: "COVID-19"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: united
+    favicon: www/favicon.ico
+    includes:
+      in_header: www/meta.html
+    navbar:
+      - { title: "<i class='fab fa-github fa-lg'></i> &nbsp; Credits",
+          href: "https://github.com/Lrakotoson/Covid-19" }
+runtime: shiny
+
+---
+
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(rAmCharts)
+```
+```{r global, include=FALSE}
+source('scripts/global.R')
+source('scripts/evolution.R')
+```
+
+Situation mondiale
+=======================================================================
+
+Column {data-width=2/3}
+-----------------------------------------------------------------------
+
+### Nombre de cas
+
+```{r}
+renderPlotly(
+ map_evolution("Monde", ncol(T_cas) - 4, "Cas", F)
+)
+
+```
+
+Column {data-width=1/3}
+-----------------------------------------------------------------------
+### Cas recencés
+
+```{r}
+cas_r <- brief()$Cas
+valueBox(cas_r, icon = "fa-procedures", color="danger")
+```
+
+### Taux* de rétablissement
+
+```{r}
+retablis_r <- round(brief()$Retablis*100/brief()$Cas, 2)
+valueBox(paste(retablis_r, '%'), icon = "fa-plus", color="success")
+```
+
+### Taux* de mortalité
+
+```{r}
+morts_r <- round(brief()$Morts*100/brief()$Cas, 2)
+valueBox(paste(morts_r, '%'), icon = "fa-dizzy", color="warning")
+```
+
+### Actus {.no-title}
+
+```{r}
+renderTable({
+  suppressWarnings(actus()) %>% rename("A la une" = Actus)
+  },sanitize.text.function = function(x) x)
+```
+
+>*Taux = nombre de rétablissements ou morts sur les cas recensés
+
+
+
+
+Evolution regionale {data-orientation=rows}
+=======================================================================
+
+Inputs {.sidebar}
+-------------------------------------
+
+<h3>Analyse par région</h3>
+L'actualisation de cette variable globale permet la mise à jour des 3 fenêtres.
+
+```{r}
+selectInput("region", label = h5("Région:"),
+            choices = regions, selected = "Monde")
+```
+
+<hr>
+<h4>Analyse de la carte</h4>
+Analyse de la répartition géographique des __cas__/ __rétablis__/ __morts__ en fonction du __temps__.
+
+```{r}
+selectInput("colonne", label = "Situation:",
+            choices = c("Cas", "Retablis", "Morts"), selected = "Cas")
+```
+
+```{r}
+t <- min(ncol(T_cas), ncol(T_retablis), ncol(T_morts)) - 4
+
+sliderInput("time", label = "Relevé:",
+            min = 1, max = t, value = t, step = 1)
+```
+
+<hr>
+<h4>Analyse en fonction du temps</h4>
+Rendre compte des échelles de grandeur:
+
+```{r}
+checkboxInput("logscale", "Echelle logarithmique", value = FALSE)
+```
+
+__Ajustement de la période sous chaque graphe.__
+
+Row {data-height=1/2}
+-------------------------------------
+
+### Situation géographique
+
+```{r}
+renderPlotly(
+  map_evolution(input$region, input$time, input$colonne)
+)
+```
+
+
+Row {data-height=1/2}
+-------------------------------------
+   
+### Evolution dans la région
+
+```{r}
+renderAmCharts(ts_evolution(input$region, input$logscale))
+```   
+    
+### Taux
+
+```{r}
+renderAmCharts(rate_evolution(input$region))
+```

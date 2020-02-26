@@ -6,11 +6,15 @@ output:
     vertical_layout: fill
     theme: united
     favicon: www/favicon.ico
+    includes:
+      in_header: meta.html
     navbar:
       - { title: "<i class='fab fa-github fa-lg'></i> &nbsp; Credits",
           href: "https://github.com/Lrakotoson/Covid-19" }
 runtime: shiny
+
 ---
+
 
 ```{r setup, include=FALSE}
 library(flexdashboard)

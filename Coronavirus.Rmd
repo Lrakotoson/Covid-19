@@ -47,18 +47,22 @@ Column {data-width=1/3}
 ### Cas recencés
 
 ```{r}
-cas_r <- brief()$Cas
-valueBox(cas_r, icon = "fa-procedures", color="danger")
+cas_r <- format(brief()$Cas, big.mark=" ")
+positifs_r <- format(brief()$Cas - (brief()$Morts + brief()$Retablis), big.mark=" ")
+valueBox(cas_r,
+         paste("Cas, dont", positifs_r, "positifs*"),
+         icon = "fa-procedures",
+         color="danger")
 ```
 
-### Taux* de rétablissement
+### Taux** de rétablissement
 
 ```{r}
 retablis_r <- round(brief()$Retablis*100/brief()$Cas, 2)
 valueBox(paste(retablis_r, '%'), icon = "fa-plus", color="success")
 ```
 
-### Taux* de mortalité
+### Taux** de mortalité
 
 ```{r}
 morts_r <- round(brief()$Morts*100/brief()$Cas, 2)
@@ -73,7 +77,8 @@ renderTable({
   },sanitize.text.function = function(x) x)
 ```
 
->*Taux = nombre de rétablissements ou morts sur les cas recensés.
+>*Positifs = Cas non rétablis, non décédés  
+>**Taux = nombre de rétablissements ou morts sur les cas recensés.
 
 
 

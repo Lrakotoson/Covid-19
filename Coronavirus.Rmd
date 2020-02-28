@@ -37,7 +37,7 @@ Column {data-width=2/3}
 
 ```{r}
 renderPlotly(
- map_evolution("Monde", ncol(T_cas) - 4, "Cas", F)
+ map_evolution("Monde", ncol(T_cas) - 4, "Cas", F, T)
 )
 
 ```
@@ -73,7 +73,7 @@ renderTable({
   },sanitize.text.function = function(x) x)
 ```
 
->*Taux = nombre de rétablissements ou morts sur les cas recensés
+>*Taux = nombre de rétablissements ou morts sur les cas recensés.
 
 
 
@@ -129,6 +129,13 @@ renderPlotly(
 )
 ```
 
+### Nouvelles données
+
+```{r}
+renderAmCharts(
+  nw_evolution(input$region, input$colonne)
+)
+```
 
 Row {data-height=1/2}
 -------------------------------------

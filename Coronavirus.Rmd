@@ -25,6 +25,7 @@ library(rAmCharts)
 ```{r global, include=FALSE}
 source('scripts/global.R')
 source('scripts/evolution.R')
+source('scripts/analysis.R')
 ```
 
 Situation mondiale
@@ -83,7 +84,7 @@ renderTable({
 
 
 
-Evolution regionale {data-orientation=rows}
+Evolution regionale 
 =======================================================================
 
 Inputs {.sidebar}
@@ -134,6 +135,16 @@ renderPlotly(
 )
 ```
 
+   
+### Evolution dans la région
+
+```{r}
+renderAmCharts(ts_evolution(input$region, input$logscale))
+```   
+
+Row {data-height=1/2}
+-------------------------------------
+
 ### Nouvelles données
 
 ```{r}
@@ -141,18 +152,213 @@ renderAmCharts(
   nw_evolution(input$region, input$colonne)
 )
 ```
-
-Row {data-height=1/2}
--------------------------------------
-   
-### Evolution dans la région
-
-```{r}
-renderAmCharts(ts_evolution(input$region, input$logscale))
-```   
     
 ### Taux
 
 ```{r}
 renderAmCharts(rate_evolution(input$region))
+```
+
+
+Analyse par pays {style="position:relative"}
+=======================================================================
+
+```{r reactive, include=FALSE}
+first <- as.Date(colnames(T_cas)[5], "%m/%d/%y")
+last <- as.Date(colnames(T_cas)[ncol(T_cas)], "%m/%d/%y")
+rangeDate <- reactive({seq.Date(as.Date(first), as.Date(last), by = "day")})
+beg <- reactive({match(as.Date(input$Comparedate[1]), rangeDate())})
+end <- reactive({match(as.Date(input$Comparedate[2]), rangeDate())})
+Country1 <- reactive({input$Country1})
+Country2 <- reactive({input$Country2})
+```
+
+Row {style="height:120pc;"}
+-------------------------------------
+
+
+
+```{r}
+fillCol(
+  flex = c(0.8, 0.1,
+           1.2, 0.1,
+           1.2, 0.1,
+           1.2, 0.1,
+           1.2, 0.1),
+  
+  fillRow(
+    column(
+      12,
+      selectInput(
+        "Country1", "Pays A",
+        c(brief("Country")$group, "Monde"),
+        "France"
+        ),
+      selectInput(
+        "Country2", "Pays B",
+        c(brief("Country")$group, "Monde"),
+        "Italy"
+       ),
+      sliderInput(
+        "Comparedate", "Domaine",
+        min = first, 
+        max = last,
+        value = c(first, last), 
+        timeFormat = "%d/%m"
+       )
+    ),
+    column(
+      12,
+      h3("Analyse Cas"),
+      checkboxInput(
+        "Caslog", "Echelle logarithmique nombre Cas", value = T
+      ),
+      selectInput(
+        "Casreg",
+        "Régression Cas",
+        c("Aucune" = 0,
+          "Régression linéaire" = 1,
+          "Régression poly 2" = 2,
+          "Régression poly 3" = 3
+          )
+      ),
+      textInput(
+        "Caspred",
+        "Nombre jours à prédire",
+        value = 0
+      )
+    ),
+    column(
+      12,
+      h3("Analyse Décès"),
+      checkboxInput(
+        "Mortslog", "Echelle logarithmique Mortalité", value = F
+      ),
+      selectInput(
+        "Mortsreg",
+        "Régression Mortalité",
+        c("Aucune" = 0,
+          "Régression linéaire" = 1,
+          "Régression poly 2" = 2,
+          "Régression poly 3" = 3
+        )
+      ),
+      textInput(
+        "Mortspred",
+        "Nombre jours à prédire",
+        value = 0
+      )
+    ),
+    column(
+      12,
+      h3("Analyse Rétablis"),
+      checkboxInput(
+        "Retablislog", "Echelle logarithmique Retablis", value = F
+      ),
+      selectInput(
+        "Retablisreg",
+        "Régression Retablis",
+        c("Aucune" = 0,
+          "Régression linéaire" = 1,
+          "Régression poly 2" = 2,
+          "Régression poly 3" = 3
+        )
+      ),
+      textInput(
+        "Retablispred",
+        "Nombre jours à prédire",
+        value = 0
+      )
+    )
+  ),br(),
+  
+  fillRow(
+    renderLeaflet({
+      comparemap(Country1(), Country2(), end())
+    })
+  ),br(),
+  
+  fillRow(
+    column(
+      12,
+      renderAmCharts({
+        compare_situation(
+          "Cas",
+          Country1(), Country2(),
+          beg(), end(),
+          input$Caslog,
+          as.integer(input$Casreg),
+          as.integer(input$Caspred)
+        )
+      })
+    ),
+    column(
+      12,
+      renderAmCharts({
+        compare_situation(
+          "Actifs",
+          Country1(), Country2(),
+          beg(), end(),
+          logscale = F,
+          reg = 0, pred = 0
+        )
+      })
+    )
+  ),br(),
+  
+  fillRow(
+    column(
+      12,
+      renderAmCharts({
+        compare_situation(
+          "Morts",
+          Country1(), Country2(),
+          beg(), end(),
+          input$Mortslog,
+          as.integer(input$Mortsreg),
+          as.integer(input$Mortspred)
+        )
+      })
+    ),
+    column(
+      12,
+      renderAmCharts({
+        compare_situation(
+          "Letalite",
+          Country1(), Country2(),
+          beg(), end(),
+          input$Mortslog,
+          as.integer(input$Mortsreg),
+          as.integer(input$Mortspred)
+        )
+      })
+    )
+  ),br(),
+  
+  fillRow(
+    column(
+      12,
+      renderAmCharts({
+        compare_situation(
+          "Retablis",
+          Country1(), Country2(),
+          beg(), end(),
+          input$Retablislog,
+          as.integer(input$Retablisreg),
+          as.integer(input$Retablispred)
+        )
+      })
+    ),
+    column(
+      12,
+      renderAmCharts({
+        compare_new(
+          Country1(), Country2(),
+          beg(), end()
+        )
+      })
+    )
+  ),br()
+  
+)
 ```

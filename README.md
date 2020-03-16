@@ -11,15 +11,19 @@
 ![GitHub](https://img.shields.io/github/license/Lrakotoson/Covid-19?style=for-the-badge)
 [![Work](https://img.shields.io/badge/kernel-shiny-blue?style=for-the-badge&logo=R)](https://loicrakotoson.com/Covid-19/)
 
-Dashboard to follow in real time the evolution of Coronavirus in the World.  
-[**Dashboard link**](https://loicrakotoson.com/Covid-19/)
+Dashboard to follow in real time the evolution of Coronavirus in the World.
+
+[![Run Dashboard](https://img.shields.io/badge/-RUN%20DASHBOARD-red?style=for-the-badge&logo=imgur&logoColor=white&color=99004d)](https://loicrakotoson.com/Covid-19/)
 
 </div>
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
-## Contributors ✨
+# Contributors ✨
+<div align="center">
+
+**Open for contributions: March, 16<sup>th</sup> 2020**
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -39,3 +43,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+</div>
+
+# Contributing 🤝
+🎊 Firstly, thank you for giving your time to contribute to `COVID-19 Dashboard`. 🎊
+
+If you have a new feature to submit, don't hesitate to **open an issue** _(By checking "new feature" to make it easier to read)_ We can discuss it freely there.  
+Then you can make a **pull request**.
+
+Same for all contributions, code improvement, documentation writing, translations... **all ideas are welcome!**

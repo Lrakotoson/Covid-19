@@ -45,8 +45,11 @@ comparemap <- function(Country1, Country2 = "Monde", t = ncol(T_cas)){
       stroke = F, smoothFactor = 0.1,
       fillOpacity = 1,
       fillColor = ~pal(Cas),
-      label = ~paste(admin, "|", Cas, "cas",
-                     Morts, "morts", Retablis, "retablis")
+      label = ~paste(
+        admin, "|",
+        Cas, i18n()$t("Cas"),
+        Morts, i18n()$t("Morts"),
+        Retablis, i18n()$t("Retablis"))
     ) %>% 
     addLegend(
       pal = pal,
@@ -150,17 +153,19 @@ compare_situation <- function(Situation, Country1, Country2, t1, t2, logscale = 
   
   fill_alphas <- 0
   if (Situation == "Morts"){
-    main <- "Taux de mortalite"
+    main <- i18n()$t("Taux de mortalite")
   } else if (Situation == "Retablis"){
-    main <- "Taux de retablissement"
+    main <- i18n()$t("Taux de retablissement")
   } else if (Situation == "Letalite"){
-    main <- "Taux de letalite"
+    main <- i18n()$t("Taux de letalite")
     fill_alphas <- c(0.3, 0.3, 0.2, 0.2)
   } else if (Situation == "Actifs"){
-    main <- "Nombre de Cas Actifs"
+    main <- i18n()$t("Nombre de Cas Actifs")
     fill_alphas <- c(0.3, 0.3, 0.2, 0.2)
   } else {
-    main <- paste("Situation:", Situation)
+    main <- paste(
+      i18n()$t("Situation:"),
+      i18n()$t(Situation))
   }
   
   data <- compare_data(Situation, Country1, Country2, t1, t2)
@@ -207,7 +212,7 @@ compare_new <- function(Country1, Country2, t1, t2){
       type = "column",
       fillAlphas = 1,
       scrollbar = F,
-      main = "Nouveaux Cas",
+      main = i18n()$t("Nouveaux Cas"),
     )
   return(plot)
 }

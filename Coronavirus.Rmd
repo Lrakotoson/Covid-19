@@ -44,7 +44,7 @@ bs_modal(
 
 
 translator <- Translator$new(translation_csvs_path = "translation")
-i18n <- reactive({
+i18n <<- reactive({
     selected <- input$lang
     if (length(selected) > 0 && selected %in% translator$languages) {
       translator$set_translation_language(selected)

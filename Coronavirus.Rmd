@@ -22,7 +22,38 @@ library(tidyverse)
 library(plotly)
 library(rAmCharts)
 library(bsplus)
+library(shiny.i18n)
 ```
+
+
+```{r}
+bs_modal(
+    id = "modal_markdown", 
+    title = "Langue de l'interface",
+    selectInput(
+      "lang",
+      label = h5("Choix de la langue"),
+      choices = c(
+        "English" = "en",
+        "Français" = "fr"
+      ),
+      selected = "fr"
+      )
+  )
+
+
+
+translator <- Translator$new(translation_csvs_path = "translation")
+i18n <- reactive({
+    selected <- input$lang
+    if (length(selected) > 0 && selected %in% translator$languages) {
+      translator$set_translation_language(selected)
+    }
+    translator
+  })
+```
+
+
 ```{r global, include=FALSE}
 source('scripts/global.R')
 source('scripts/evolution.R')
@@ -48,16 +79,6 @@ Column {data-width=2/3}
 ### Nombre de cas
 
 ```{r}
-bs_modal(
-    id = "modal_markdown", 
-    title = "Langue de l'interface",
-    selectInput("lang", label = h5("Choix de la langue"),
-            choices = regions, selected = "Monde")
-  )
-```
-
-
-```{r}
 renderPlotly(
  map_evolution("Monde", ncol(T_cas) - 4, "Cas", F, T)
 )
@@ -71,10 +92,11 @@ Column {data-width=1/3}
 ```{r}
 cas_r <- format(brief()$Cas, big.mark=" ")
 positifs_r <- format(brief()$Cas - (brief()$Morts + brief()$Retablis), big.mark=" ")
+renderValueBox(
 valueBox(cas_r,
-         paste("Cas, dont", positifs_r, "positifs*"),
+         paste(i18n()$t("Cas"), positifs_r, "positifs*"),
          icon = "fa-procedures",
-         color="danger")
+         color="danger"))
 ```
 
 ### Taux** de rétablissement

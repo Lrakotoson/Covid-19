@@ -21,12 +21,23 @@ library(flexdashboard)
 library(tidyverse)
 library(plotly)
 library(rAmCharts)
+library(bsplus)
 ```
 ```{r global, include=FALSE}
 source('scripts/global.R')
 source('scripts/evolution.R')
 source('scripts/analysis.R')
 ```
+
+
+<script>
+$(document).ready(function() {
+  $('#dashboard-container').on('flexdashboard:layoutcomplete', function() {
+    $('#modal_markdown').modal();
+  })
+})
+</script>
+
 
 Situation mondiale
 =======================================================================
@@ -35,6 +46,16 @@ Column {data-width=2/3}
 -----------------------------------------------------------------------
 
 ### Nombre de cas
+
+```{r}
+bs_modal(
+    id = "modal_markdown", 
+    title = "Langue de l'interface",
+    selectInput("lang", label = h5("Choix de la langue"),
+            choices = regions, selected = "Monde")
+  )
+```
+
 
 ```{r}
 renderPlotly(

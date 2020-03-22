@@ -11,7 +11,7 @@ Analyse par région,Regional analysis
 Analyse Rétablis,Analysis Recovered
 Aucune,None
 Cas,Case
-Deces:,Deaths:
+"Deces: ","Deaths: "
 Domaine,Field
 dont,including
 Echelle logarithmique,Logarithmic scale
@@ -24,7 +24,7 @@ Letalite,Fatality
 Monde,World
 Morts,Deads
 Nombre de Cas Actifs,Number of Active cases
-Nombre de cas:,Number of cases:
+"Nombre de cas: ","Number of cases: "
 Nombre jours à prédire,Number of days to forecast
 Nouveaux,New
 Nouveaux Cas,New Cases
@@ -41,7 +41,7 @@ Régression Retablis,Recovery Regression
 Relevé:,Report:
 Rendre compte des échelles de grandeur:,Report on size scales:
 Retablis,Recovered
-Retablis:,Recovered:
+"Retablis: ","Recovered: "
 Situation:,Situation:
 Taux,Rates
 Taux de letalite,Fatality rate

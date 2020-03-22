@@ -38,6 +38,7 @@ bs_modal(
       label = h5("Choix de la langue"),
       choices = c(
         "English" = "en",
+        "Español" = "es",
         "Français" = "fr"
       ),
       selected = "fr"

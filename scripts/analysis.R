@@ -2,7 +2,7 @@ library(leaflet)
 
 #############################################################
 
-comparemap <- function(Country1, Country2 = "Monde", t = ncol(T_cas)){
+comparemap <- function(Country1, Country2 = i18n()$t("Monde"), t = ncol(T_cas)){
   #' Renvoie un leaflet du monde avec les pays sélectionnés
   #' Country1, Country2: pays
   #' t: temps, entier >= 1

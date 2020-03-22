@@ -4,7 +4,7 @@
 
 regions <- latest() %>%
   distinct(Continent = as.character(Continent)) %>%
-  na.omit() %>% unlist() %>% as.vector() %>% c("Monde")
+  na.omit() %>% unlist() %>% as.vector()
 
 #############################################################
 
@@ -73,7 +73,7 @@ map_evolution <- function(region, time, colonne, titre = T, main = F){
       )) %>%
     layout(
       title = ifelse(titre,
-                     paste0("\n<b>", region,
+                     paste0("\n<b>", i18n()$t(region),
                             "</b>: <b style='color:",color,"'>", i18n()$t(colonne),
                             "</b> - <b>", as.Date(names(T_cas)[time+4], "%m/%d/%y"),
                             "</b>"),
@@ -92,16 +92,16 @@ map_evolution <- function(region, time, colonne, titre = T, main = F){
 }
 #############################################################
 
-timeserie <- function(region = "Monde"){
+timeserie <- function(region = i18n()$t("Monde")){
   #' Renvoie un tibble des données en séries temporelles
   #' region: Region/Continent
   
-  fusion <- function(table, name, region = "Monde"){
+  fusion <- function(table, name, region = i18n()$t("Monde")){
     #' Renvoie un tibble de la table en série temporelle
     #' name: nom de la variable Cas/Morts/Retablis
     #' region: Region/Continent
     
-    if (region != "Monde"){
+    if (region != i18n()$t("Monde")){
       table <- table %>%
         mutate(Region = continent(Long, Lat)) %>%
         filter(Region  == region) %>%
@@ -130,7 +130,7 @@ timeserie <- function(region = "Monde"){
 }
 #############################################################
 
-nw_evolution <- function(region = "Monde", colonne){
+nw_evolution <- function(region = i18n()$t("Monde"), colonne){
   #' Renvoie un ramCharts des nouvelles données
   #' region: Region/Continent
   #' colonne: Cas/Retablis/Morts
@@ -168,7 +168,7 @@ nw_evolution <- function(region = "Monde", colonne){
 }
 #############################################################
 
-ts_evolution <- function(region = "Monde", logscale = F){
+ts_evolution <- function(region = i18n()$t("Monde"), logscale = F){
   #' Renvoie un ramCharts de l'évolution au cours du temps
   #' region: Region/Continent
   #' logscale: bool, échelle logarithmique
@@ -192,13 +192,13 @@ ts_evolution <- function(region = "Monde", logscale = F){
                  fillAlphas = c(0.1, 0.2, 0.3),
                  main = paste(
                    i18n()$t("Evolution:"),
-                   region)
+                   i18n()$t(region))
     )
   return(plot)
 }
 #############################################################
 
-rate_evolution <- function(region = "Monde"){
+rate_evolution <- function(region = i18n()$t("Monde")){
   #' Renvoie un ramCharts des taux au cours du temps
   #' region: Region/Continent
   
@@ -214,7 +214,7 @@ rate_evolution <- function(region = "Monde"){
                  fillAlphas = 0.2,
                  main = paste(
                    i18n()$t("Taux"),
-                   "(%) :", region)
+                   "(%) :", i18n()$t(region))
     )
   return(plot)
 }

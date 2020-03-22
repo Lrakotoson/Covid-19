@@ -1,14 +1,14 @@
 fr,es
 A la une,Noticias
-Actifs,activos
+Actifs,Activos
 Ajustement de la période sous chaque graphe.,Ajuste del período bajo cada gráfico.
 Analyse Cas,Análisis de casos
 Analyse de la carte,Análisis del mapa
-Analyse de la répartition géographiques des <strong>cas/ rétablis/ morts</strong> en fonction du <strong>temps</strong>.,Análisis de la distribución geográfica de los <strong> casos/ curados/ muertos</strong> en función de <strong> tiempo</strong>.
-Analyse Décès,Análisis de la muerte
+Analyse de la répartition géographiques des <strong>cas/ rétablis/ morts</strong> en fonction du <strong>temps</strong>.,Análisis de la distribución geográfica de los <strong> casos/ recuperados/ muertos</strong> en función de <strong> tiempo</strong>.
+Analyse Décès,Análisis número de muertes
 Analyse en fonction du temps,Análisis en función de tiempo
 Analyse par région,Análisis por región
-Analyse Rétablis,Análisis de curado
+Analyse Rétablis,Análisis número de recuperados
 Aucune,Ninguna
 Cas,Casos
 "Deces: ","Muertes: "
@@ -17,15 +17,15 @@ dont,incluyendo
 Echelle logarithmique,Escala logarítmica
 Echelle logarithmique Mortalité,Escala logarítmica Mortalidad
 Echelle logarithmique nombre Cas,Escala logarítmica Casos
-Echelle logarithmique Retablis,Escala logarítmica Curación
+Echelle logarithmique Retablis,Escala logarítmica de recuperación
 Evolution,Evolución
-L’actualisation de cette variable globale permet la mise à jour des 3 fenêtres.,Actualizar esta variable global permite actualizar las 3 ventanas.
+L’actualisation de cette variable globale permet la mise à jour des 3 fenêtres.,Esta variable global permite actualizar las 3 ventanas.
 Letalite,Letalidad
 Monde,Mundo
 Morts,Muertes
-Nombre de Cas Actifs,Cantidad de Casos Activos
-"Nombre de cas: ","Cantidad de casos: "
-Nombre jours à prédire,Cantidad de días para predecir
+Nombre de Cas Actifs,Número de Casos Activos
+"Nombre de cas: ","Número de casos: "
+Nombre jours à prédire,Número de días para predecir
 Nouveaux,Nuevos
 Nouveaux Cas,Nuevos casos
 Pays A,País A
@@ -39,13 +39,13 @@ Régression poly 2,Regresión poli 2
 Régression poly 3,Regresión poli 3
 Régression Retablis,Regresión Curación
 Relevé:,Reporte:
-Rendre compte des échelles de grandeur:,Tener en cuenta las escalas de dimensione:
+Rendre compte des échelles de grandeur:,Tener en cuenta las escalas de dimensiones:
 Retablis,Sanados
 "Retablis: ","Sanados: "
 Situation:,Situación:
 Taux,Tasa
 Taux de letalite,Tasa de letalidad
-taux de mortalite,tasa de mortalidad
+Taux de mortalite,Tasa de mortalidad
 Taux de mortalite,Tasa de mortalidad
 Taux de retablissement,Tasa de curación
-taux retablissement,tasa de curación
+Taux retablissement,Tasa de curación

@@ -48,7 +48,7 @@ bs_modal(
         filter(lang == input$lang) %>%
         arrange(name)
       
-      choices <- countries$gl
+      choices <- countries$geo
       names(choices) <- countries$name
       
       selectInput(
@@ -90,7 +90,7 @@ $(document).ready(function() {
 </script>
 
 
-Situation mondiale
+Worldwide / Mondial {data-icon="fa-globe"}
 =======================================================================
 
 Column {data-width=2/3}
@@ -167,7 +167,7 @@ renderValueBox({
 renderTable({
   argument <- datalang %>% 
     filter(lang == input$lang,
-           gl == input$pays
+           geo == input$pays
            )
   
   suppressWarnings(
@@ -185,7 +185,7 @@ renderTable({
 
 
 
-Evolution regionale 
+Evolution {data-icon="fa-chart-bar"}
 =======================================================================
 
 Inputs {.sidebar}
@@ -326,7 +326,7 @@ renderAmCharts(rate_evolution(input$region))
 ```
 
 
-Analyse par pays {style="position:relative"}
+Countries Analysis {style="position:relative"}
 =======================================================================
 
 ```{r reactive, include=FALSE}

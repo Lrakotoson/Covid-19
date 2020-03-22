@@ -38,6 +38,15 @@
         "example",
         "ideas"
       ]
+    },
+    {
+      "login": "Harold-Rodriguez",
+      "name": "Harold-Rodriguez",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/56844540?v=4",
+      "profile": "https://github.com/Harold-Rodriguez",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,

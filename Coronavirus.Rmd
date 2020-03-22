@@ -44,7 +44,7 @@ bs_modal(
     ),
     renderUI({
       countries <- datalang %>%
-        filter(hl == input$lang) %>%
+        filter(lang == input$lang) %>%
         arrange(name)
       
       choices <- countries$gl
@@ -99,7 +99,7 @@ Column {data-width=2/3}
 
 ```{r}
 renderPlotly(
- map_evolution("Monde", ncol(T_cas) - 4, "Cas", F, T)
+ map_evolution(i18n()$t("Monde"), ncol(T_cas) - 4, "Cas", F, T)
 )
 
 ```
@@ -109,9 +109,10 @@ Column {data-width=1/3}
 ### Cas recencés
 
 ```{r}
-cas_r <- format(brief()$Cas, big.mark=" ")
-positifs_r <- format(brief()$Cas - (brief()$Morts + brief()$Retablis), big.mark=" ")
-renderValueBox(
+renderValueBox({
+  cas_r <- format(brief()$Cas, big.mark=" ")
+  positifs_r <- format(brief()$Cas - (brief()$Morts + brief()$Retablis), big.mark=" ")
+
   valueBox(cas_r,
            paste(
              i18n()$t("Cas"), i18n()$t("dont"),
@@ -120,14 +121,15 @@ renderValueBox(
            icon = "fa-procedures",
            color="danger"
           )
-)
+})
 ```
 
 ### Taux de rétablissement
 
 ```{r}
-retablis_r <- round(brief()$Retablis*100/brief()$Cas, 2)
-renderValueBox(
+renderValueBox({
+  retablis_r <- round(brief()$Retablis*100/brief()$Cas, 2)
+
   valueBox(
     paste(retablis_r, '%'),
     paste(
@@ -137,14 +139,15 @@ renderValueBox(
     icon = "fa-plus",
     color="success"
   )
-)
+})
 ```
 
 ### Taux de mortalité
 
 ```{r}
-morts_r <- round(brief()$Morts*100/brief()$Cas, 2)
-renderValueBox(
+renderValueBox({
+  morts_r <- round(brief()$Morts*100/brief()$Cas, 2)
+
   valueBox(
     paste(morts_r, '%'),
     paste(
@@ -154,15 +157,20 @@ renderValueBox(
     icon = "fa-dizzy",
     color="warning"
   )
-)
+})
 ```
 
 ### Actus {.no-title}
 
 ```{r}
 renderTable({
+  argument <- datalang %>% 
+    filter(lang == input$lang,
+           gl == input$pays
+           )
+  
   suppressWarnings(
-    actus(input$lang)
+    actus(argument$request, argument$hl, argument$gl)
   ) %>%
     rename(
       !!i18n()$t("A la une") := Actus
@@ -170,8 +178,8 @@ renderTable({
   },sanitize.text.function = function(x) x)
 ```
 
->*Positifs = Cas non rétablis, non décédés  
->**Taux = nombre de rétablissements ou morts sur les cas recensés.
+>*Not dead, not recovered  
+>**On total cases
 
 
 
@@ -198,8 +206,8 @@ renderUI({
   selectInput(
     "region", 
     label = h5(i18n()$t("Région:")),
-    choices = regions,
-    selected = "Monde"
+    choices = c(regions, i18n()$t("Monde")),
+    selected = i18n()$t("Monde")
   )
 })
 ```
@@ -350,7 +358,7 @@ fillCol(
         selectInput(
           "Country1",
           i18n()$t("Pays A"),
-          c(brief("Country")$group, "Monde"),
+          c(brief("Country")$group, i18n()$t("Monde")),
           "France"
           )
         }),
@@ -358,7 +366,7 @@ fillCol(
         selectInput(
           "Country2",
           i18n()$t("Pays B"),
-          c(brief("Country")$group, "Monde"),
+          c(brief("Country")$group, i18n()$t("Monde")),
           "Italy"
          )
         }),

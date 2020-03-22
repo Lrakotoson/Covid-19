@@ -49,4 +49,11 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 If you have a new feature to submit, don't hesitate to **open an issue** _(By checking "new feature" to make it easier to read)_ We can discuss it freely there.  
 Then you can make a **pull request**.
 
+<div align="center">
+ 
+ 💻[Contribution Guidelines](https://github.com/Lrakotoson/Covid-19/blob/master/.github/CONTRIBUTING.md)💻  
+ 🌍[Translation Guidelines](https://github.com/Lrakotoson/Covid-19/blob/master/.github/CONTRIBUTING.md#implement-translation)🌍
+ 
+ </div>
+
 Same for all contributions, code improvement, documentation writing, translations... **all ideas are welcome!**

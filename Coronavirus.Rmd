@@ -22,7 +22,58 @@ library(tidyverse)
 library(plotly)
 library(rAmCharts)
 library(bsplus)
+library(shiny.i18n)
 ```
+
+
+```{r translate}
+datalang <- read_csv("scripts/requests.csv")
+
+bs_modal(
+  id = "modal_markdown", 
+  title = "Langue de l'interface",
+  tags$div(
+    selectInput(
+      "lang",
+      label = h5("Choix de la langue"),
+      choices = c(
+        "English" = "en",
+        "Español" = "es",
+        "Français" = "fr"
+      ),
+      selected = "fr"
+    ),
+    renderUI({
+      countries <- datalang %>%
+        filter(lang == input$lang) %>%
+        arrange(name)
+      
+      choices <- countries$geo
+      names(choices) <- countries$name
+      
+      selectInput(
+        "pays",
+        label = h5("Choix du pays"),
+        choices = choices
+      )
+    })
+  ),
+  size = "small"
+)
+
+
+
+translator <- Translator$new(translation_csvs_path = "translation")
+i18n <<- reactive({
+  selected <- input$lang
+  if (length(selected) > 0 && selected %in% translator$languages) {
+    translator$set_translation_language(selected)
+  }
+  translator
+})
+```
+
+
 ```{r global, include=FALSE}
 source('scripts/global.R')
 source('scripts/evolution.R')
@@ -39,7 +90,7 @@ $(document).ready(function() {
 </script>
 
 
-Situation mondiale
+Worldwide / Mondial {data-icon="fa-globe"}
 =======================================================================
 
 Column {data-width=2/3}
@@ -48,18 +99,8 @@ Column {data-width=2/3}
 ### Nombre de cas
 
 ```{r}
-bs_modal(
-    id = "modal_markdown", 
-    title = "Langue de l'interface",
-    selectInput("lang", label = h5("Choix de la langue"),
-            choices = regions, selected = "Monde")
-  )
-```
-
-
-```{r}
 renderPlotly(
- map_evolution("Monde", ncol(T_cas) - 4, "Cas", F, T)
+ map_evolution(i18n()$t("Monde"), ncol(T_cas) - 4, "Cas", F, T)
 )
 
 ```
@@ -69,81 +110,185 @@ Column {data-width=1/3}
 ### Cas recencés
 
 ```{r}
-cas_r <- format(brief()$Cas, big.mark=" ")
-positifs_r <- format(brief()$Cas - (brief()$Morts + brief()$Retablis), big.mark=" ")
-valueBox(cas_r,
-         paste("Cas, dont", positifs_r, "positifs*"),
-         icon = "fa-procedures",
-         color="danger")
+renderValueBox({
+  cas_r <- format(brief()$Cas, big.mark=" ")
+  positifs_r <- format(brief()$Cas - (brief()$Morts + brief()$Retablis), big.mark=" ")
+
+  valueBox(cas_r,
+           paste(
+             i18n()$t("Cas"), i18n()$t("dont"),
+             positifs_r, i18n()$t("positifs"),
+             "*"),
+           icon = "fa-procedures",
+           color="danger"
+          )
+})
 ```
 
-### Taux** de rétablissement
+### Taux de rétablissement
 
 ```{r}
-retablis_r <- round(brief()$Retablis*100/brief()$Cas, 2)
-valueBox(paste(retablis_r, '%'), icon = "fa-plus", color="success")
+renderValueBox({
+  retablis_r <- round(brief()$Retablis*100/brief()$Cas, 2)
+
+  valueBox(
+    paste(retablis_r, '%'),
+    paste(
+      i18n()$t("Taux de retablissement"),
+      "**"
+    ),
+    icon = "fa-plus",
+    color="success"
+  )
+})
 ```
 
-### Taux** de mortalité
+### Taux de mortalité
 
 ```{r}
-morts_r <- round(brief()$Morts*100/brief()$Cas, 2)
-valueBox(paste(morts_r, '%'), icon = "fa-dizzy", color="warning")
+renderValueBox({
+  morts_r <- round(brief()$Morts*100/brief()$Cas, 2)
+
+  valueBox(
+    paste(morts_r, '%'),
+    paste(
+      i18n()$t("Taux de mortalite"),
+      "**"
+    ),
+    icon = "fa-dizzy",
+    color="warning"
+  )
+})
 ```
 
 ### Actus {.no-title}
 
 ```{r}
 renderTable({
-  suppressWarnings(actus()) %>% rename("A la une" = Actus)
+  argument <- datalang %>% 
+    filter(lang == input$lang,
+           geo == input$pays
+           )
+  
+  suppressWarnings(
+    actus(argument$request, argument$hl, argument$gl)
+  ) %>%
+    rename(
+      !!i18n()$t("A la une") := Actus
+    )
   },sanitize.text.function = function(x) x)
 ```
 
->*Positifs = Cas non rétablis, non décédés  
->**Taux = nombre de rétablissements ou morts sur les cas recensés.
+>*Not dead, not recovered  
+>**On total cases
 
 
 
 
-Evolution regionale 
+Evolution {data-icon="fa-chart-bar"}
 =======================================================================
 
 Inputs {.sidebar}
 -------------------------------------
-
-<h3>Analyse par région</h3>
-L'actualisation de cette variable globale permet la mise à jour des 3 fenêtres.
-
 ```{r}
-selectInput("region", label = h5("Région:"),
-            choices = regions, selected = "Monde")
+renderUI({
+  HTML(
+    paste0(
+      "<h3>", i18n()$t("Analyse par région"), "</h3>",
+      "<p>", i18n()$t("L’actualisation de cette variable globale permet la mise à jour des 3 fenêtres."), "</p>"
+    )
+  )
+})
 ```
 
-<hr>
-<h4>Analyse de la carte</h4>
-Analyse de la répartition géographique des __cas__/ __rétablis__/ __morts__ en fonction du __temps__.
 
 ```{r}
-selectInput("colonne", label = "Situation:",
-            choices = c("Cas", "Retablis", "Morts"), selected = "Cas")
+renderUI({
+  selectInput(
+    "region", 
+    label = h5(i18n()$t("Région:")),
+    choices = c(regions, i18n()$t("Monde")),
+    selected = i18n()$t("Monde")
+  )
+})
 ```
+
 
 ```{r}
-t <- min(ncol(T_cas), ncol(T_retablis), ncol(T_morts)) - 4
-
-sliderInput("time", label = "Relevé:",
-            min = 1, max = t, value = t, step = 1)
+renderUI({
+  HTML(
+    paste0(
+      "<hr><h4>", i18n()$t("Analyse de la carte"), "</h4>",
+      "<p>", i18n()$t("Analyse de la répartition géographiques des <strong>cas/ rétablis/ morts</strong> en fonction du <strong>temps</strong>."), "</p>"
+    )
+  )
+})
 ```
 
-<hr>
-<h4>Analyse en fonction du temps</h4>
-Rendre compte des échelles de grandeur:
 
 ```{r}
-checkboxInput("logscale", "Echelle logarithmique", value = FALSE)
+renderUI({
+  choices <- c("Cas", "Retablis", "Morts")
+  names(choices) <- c(i18n()$t("Cas"), i18n()$t("Retablis"), i18n()$t("Morts"))
+  
+  selectInput(
+    "colonne",
+    label = "Situation:",
+    choices = choices,
+    selected = "Cas"
+  )
+})
 ```
 
-__Ajustement de la période sous chaque graphe.__
+
+```{r}
+renderUI({
+  t <- min(ncol(T_cas), ncol(T_retablis), ncol(T_morts)) - 4
+
+  sliderInput(
+    "time",
+    label = i18n()$t("Relevé:"),
+    min = 1, max = t, value = t, step = 1
+    )
+})
+```
+
+
+```{r}
+renderUI({
+  HTML(
+    paste0(
+      "<hr><h4>", i18n()$t("Analyse en fonction du temps"), "</h4>",
+      "<p>", i18n()$t("Rendre compte des échelles de grandeur:"), "</p>"
+    )
+  )
+})
+```
+
+
+```{r}
+renderUI({
+  checkboxInput(
+    "logscale",
+    i18n()$t("Echelle logarithmique"),
+    value = FALSE
+  )
+})
+```
+
+
+```{r}
+renderUI({
+  HTML(
+    paste0(
+      "<strong><em>",
+      i18n()$t("Ajustement de la période sous chaque graphe."),
+      "</em></strong>"
+    )
+  )
+})
+```
+
 
 Row {data-height=1/2}
 -------------------------------------
@@ -181,7 +326,7 @@ renderAmCharts(rate_evolution(input$region))
 ```
 
 
-Analyse par pays {style="position:relative"}
+Countries Analysis {style="position:relative"}
 =======================================================================
 
 ```{r reactive, include=FALSE}
@@ -210,86 +355,137 @@ fillCol(
   fillRow(
     column(
       12,
-      selectInput(
-        "Country1", "Pays A",
-        c(brief("Country")$group, "Monde"),
-        "France"
-        ),
-      selectInput(
-        "Country2", "Pays B",
-        c(brief("Country")$group, "Monde"),
-        "Italy"
-       ),
-      sliderInput(
-        "Comparedate", "Domaine",
-        min = first, 
-        max = last,
-        value = c(first, last), 
-        timeFormat = "%d/%m"
-       )
-    ),
-    column(
-      12,
-      h3("Analyse Cas"),
-      checkboxInput(
-        "Caslog", "Echelle logarithmique nombre Cas", value = T
-      ),
-      selectInput(
-        "Casreg",
-        "Régression Cas",
-        c("Aucune" = 0,
-          "Régression linéaire" = 1,
-          "Régression poly 2" = 2,
-          "Régression poly 3" = 3
+      renderUI({
+        selectInput(
+          "Country1",
+          i18n()$t("Pays A"),
+          c(brief("Country")$group, i18n()$t("Monde")),
+          "France"
           )
-      ),
-      textInput(
-        "Caspred",
-        "Nombre jours à prédire",
-        value = 0
-      )
+        }),
+      renderUI({
+        selectInput(
+          "Country2",
+          i18n()$t("Pays B"),
+          c(brief("Country")$group, i18n()$t("Monde")),
+          "Italy"
+         )
+        }),
+      renderUI({
+        sliderInput(
+          "Comparedate",
+          i18n()$t("Domaine"),
+          min = first, 
+          max = last,
+          value = c(first, last), 
+          timeFormat = "%d/%m"
+         )
+        })
     ),
     column(
       12,
-      h3("Analyse Décès"),
-      checkboxInput(
-        "Mortslog", "Echelle logarithmique Mortalité", value = F
-      ),
-      selectInput(
-        "Mortsreg",
-        "Régression Mortalité",
-        c("Aucune" = 0,
-          "Régression linéaire" = 1,
-          "Régression poly 2" = 2,
-          "Régression poly 3" = 3
+      renderUI({
+        h3(i18n()$t("Analyse Cas"))
+        }),
+      renderUI({
+        checkboxInput(
+          "Caslog",
+          i18n()$t("Echelle logarithmique nombre Cas"),
+          value = T
         )
-      ),
-      textInput(
-        "Mortspred",
-        "Nombre jours à prédire",
-        value = 0
-      )
+        }),
+      renderUI({
+        choices <- c(0:3)
+        names(choices) <- c(
+          i18n()$t("Aucune"),
+          i18n()$t("Régression linéaire"),
+          i18n()$t("Régression poly 2"),
+          i18n()$t("Régression poly 3")
+        )
+        
+        selectInput(
+          "Casreg",
+          i18n()$t("Régression Cas"),
+          choices
+        )
+        }),
+      renderUI({
+        textInput(
+          "Caspred",
+          i18n()$t("Nombre jours à prédire"),
+          value = 0
+        )
+        })
     ),
     column(
       12,
-      h3("Analyse Rétablis"),
-      checkboxInput(
-        "Retablislog", "Echelle logarithmique Retablis", value = F
-      ),
-      selectInput(
-        "Retablisreg",
-        "Régression Retablis",
-        c("Aucune" = 0,
-          "Régression linéaire" = 1,
-          "Régression poly 2" = 2,
-          "Régression poly 3" = 3
+     renderUI({
+        h3(i18n()$t("Analyse Décès"))
+        }),
+      renderUI({
+        checkboxInput(
+          "Mortslog",
+          i18n()$t("Echelle logarithmique Mortalité"),
+          value = F
         )
-      ),
-      textInput(
-        "Retablispred",
-        "Nombre jours à prédire",
-        value = 0
-      )
+        }),
+      renderUI({
+        choices <- c(0:3)
+        names(choices) <- c(
+          i18n()$t("Aucune"),
+          i18n()$t("Régression linéaire"),
+          i18n()$t("Régression poly 2"),
+          i18n()$t("Régression poly 3")
+        )
+        
+        selectInput(
+          "Mortsreg",
+          i18n()$t("Régression Mortalité"),
+          choices
+        )
+        }),
+      renderUI({
+        textInput(
+          "Mortspred",
+          i18n()$t("Nombre jours à prédire"),
+          value = 0
+        )
+        })
+    ),
+    column(
+      12,
+      renderUI({
+        h3(i18n()$t("Analyse Rétablis"))
+        }),
+      renderUI({
+        checkboxInput(
+          "Retablislog",
+          i18n()$t("Echelle logarithmique Retablis"),
+          value = F
+        )
+        }),
+     renderUI({
+        choices <- c(0:3)
+        names(choices) <- c(
+          i18n()$t("Aucune"),
+          i18n()$t("Régression linéaire"),
+          i18n()$t("Régression poly 2"),
+          i18n()$t("Régression poly 3")
+        )
+        
+        selectInput(
+          "Retablisreg",
+          i18n()$t("Régression Retablis"),
+          choices
+        )
+        }),
+      renderUI({
+        textInput(
+          "Retablispred",
+          i18n()$t("Nombre jours à prédire"),
+          value = 0
+        )
+        })
     )
   ),br(),
   

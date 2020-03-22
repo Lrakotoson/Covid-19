@@ -73,7 +73,7 @@ brief <- function(group = NULL, t = ncol(T_cas) - 4){
   
   if(is_empty(group)){
     data <- latest(t) %>% 
-      mutate(group = 'Monde')
+      mutate(group = i18n()$t('Monde'))
     group <- 'group'
   } else {
     data <- latest(t) %>% 
@@ -88,11 +88,20 @@ brief <- function(group = NULL, t = ncol(T_cas) - 4){
 }
 ####################################################################
 
-actus <- function(rows = 10){
+actus <- function(request, hl, gl, rows = 10){
   #' Renvoie un tibble rowsx1 de liens html
+  #' request: RSS request
+  #' hl: language
+  #' gl: geolocalisation
   #' rows: nombre de lignes à renvoyer, entier =< 100
   
-  flux <- read_xml("https://news.google.com/rss/search?q=coronavirus&hl=fr&gl=FR&ceid=FR:fr")
+  flux <- read_xml(
+    paste0(
+      "https://news.google.com/rss/", request,
+      "&hl=", hl,
+      "&gl=", gl
+      )
+    )
   item_title <- flux %>% xml_find_all("//item/title") %>% xml_text()
   item_link <- flux %>% xml_find_all("//item/link") %>% xml_text()
   

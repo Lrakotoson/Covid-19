@@ -26,10 +26,13 @@ library(shiny.i18n)
 ```
 
 
-```{r}
+```{r translate}
+datalang <- read_csv("scripts/requests.csv")
+
 bs_modal(
-    id = "modal_markdown", 
-    title = "Langue de l'interface",
+  id = "modal_markdown", 
+  title = "Langue de l'interface",
+  tags$div(
     selectInput(
       "lang",
       label = h5("Choix de la langue"),
@@ -38,19 +41,35 @@ bs_modal(
         "Français" = "fr"
       ),
       selected = "fr"
+    ),
+    renderUI({
+      countries <- datalang %>%
+        filter(hl == input$lang) %>%
+        arrange(name)
+      
+      choices <- countries$gl
+      names(choices) <- countries$name
+      
+      selectInput(
+        "pays",
+        label = h5("Choix du pays"),
+        choices = choices
       )
-  )
+    })
+  ),
+  size = "small"
+)
 
 
 
 translator <- Translator$new(translation_csvs_path = "translation")
 i18n <<- reactive({
-    selected <- input$lang
-    if (length(selected) > 0 && selected %in% translator$languages) {
-      translator$set_translation_language(selected)
-    }
-    translator
-  })
+  selected <- input$lang
+  if (length(selected) > 0 && selected %in% translator$languages) {
+    translator$set_translation_language(selected)
+  }
+  translator
+})
 ```
 
 

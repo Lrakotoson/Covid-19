@@ -51,8 +51,9 @@ Then you can make a **pull request**.
 
 <div align="center">
  
- 💻[Contribution Guidelines](https://github.com/Lrakotoson/Covid-19/blob/master/.github/CONTRIBUTING.md)💻  
- 🌍[Translation Guidelines](https://github.com/Lrakotoson/Covid-19/blob/master/.github/CONTRIBUTING.md#implement-translation)🌍
+ ### 💻[Contribution Guidelines](https://github.com/Lrakotoson/Covid-19/blob/master/.github/CONTRIBUTING.md)💻
+ 
+ ### 🌍[Translation Guidelines](https://github.com/Lrakotoson/Covid-19/blob/master/.github/CONTRIBUTING.md#implement-translation)🌍
  
  </div>
 

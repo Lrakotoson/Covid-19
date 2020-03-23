@@ -6,15 +6,7 @@
 </a>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=for-the-badge)](#contributors-)
-![GitHub](https://img.shields.io/github/license/Lrakotoson/Covid-19?style=for-the-badge)
-[![Work](https://img.shields.io/badge/kernel-shiny-blue?style=for-the-badge&logo=R)](https://loicrakotoson.com/Covid-19/)
-
-Dashboard to follow in real time the evolution of Coronavirus in the World.
-
-[![Run Dashboard](https://img.shields.io/badge/-RUN%20DASHBOARD-red?style=for-the-badge&logo=imgur&logoColor=white&color=99004d)](https://loicrakotoson.com/Covid-19/)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </div>
 
@@ -35,6 +27,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/pycolson"><img src="https://avatars1.githubusercontent.com/u/60988565?v=4" width="100px;" alt=""/><br /><sub><b>pycolson</b></sub></a><br /><a href="https://github.com/Lrakotoson/Covid-19/commits?author=pycolson" title="Code">💻</a> <a href="#example-pycolson" title="Examples">💡</a> <a href="#ideas-pycolson" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/Harold-Rodriguez"><img src="https://avatars0.githubusercontent.com/u/56844540?v=4" width="100px;" alt=""/><br /><sub><b>Harold-Rodriguez</b></sub></a><br /><a href="#translation-Harold-Rodriguez" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/Gauraviitkgp"><img src="https://avatars3.githubusercontent.com/u/23613158?v=4" width="100px;" alt=""/><br /><sub><b>Gaurav Suryawanshi</b></sub></a><br /><a href="#translation-Gauraviitkgp" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/llubosz"><img src="https://avatars2.githubusercontent.com/u/2283771?v=4" width="100px;" alt=""/><br /><sub><b>Łukasz Lubosz</b></sub></a><br /><a href="#translation-llubosz" title="Translation">🌍</a></td>
   </tr>
 </table>
 

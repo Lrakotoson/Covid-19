@@ -4,6 +4,7 @@ resource_files:
 - translation/translation_en.csv
 - translation/translation_es.csv
 - translation/translation_hi.csv
+- translation/translation_pl.csv
 runtime: shiny
 output:
   flexdashboard::flex_dashboard:

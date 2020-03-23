@@ -65,6 +65,16 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "hershkoy",
+      "name": "hershkoy",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/13259380?v=4",
+      "profile": "https://github.com/hershkoy",
+      "contributions": [
+        "ideas",
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 7,

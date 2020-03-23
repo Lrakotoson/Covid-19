@@ -1,0 +1,51 @@
+fr,en
+A la une,मुख्य बातें
+Actifs,सक्रिय
+Ajustement de la période sous chaque graphe.,अवधि समायोजन हर चार्ट के तहत
+Analyse Cas,केस विश्लेषण
+Analyse de la carte,नक्शा विश्लेषण
+Analyse de la répartition géographiques des <strong>cas/ rétablis/ morts</strong> en fonction du <strong>temps</strong>.,भौगोलिक <strong> मामले/ स्वास्थ्य मामले/मृत्यु </strong> फैलाव का विश्लेषण <strong> समय</strong> के अनुसार
+Analyse Décès,मृत्यु विश्लेषण
+Analyse en fonction du temps,विश्लेषण समय के अनुसार
+Analyse par région,क्षेत्रीय विश्लेषण
+Analyse Rétablis,स्वास्थ्य मामले का विश्लेषण
+Aucune, गैर
+Cas,मामला
+"Deces: ","मृत्यु: "
+Domaine,क्षेत्र
+dont,समेत
+Echelle logarithmique,Logarithmic scale
+Echelle logarithmique Mortalité,Logarithmic scale Death
+Echelle logarithmique nombre Cas,Logarithmic scale Case
+Echelle logarithmique Retablis,Logarithmic scale Recovery
+Evolution,Evolution
+L’actualisation de cette variable globale permet la mise à jour des 3 fenêtres.,Updating this global variable allows the 3 windows to be updated.
+Letalite,Fatality
+Monde,World
+Morts,Deads
+Nombre de Cas Actifs,Number of Active cases
+"Nombre de cas: ","Number of cases: "
+Nombre jours à prédire,Number of days to forecast
+Nouveaux,New
+Nouveaux Cas,New Cases
+Pays A,Country A
+Pays B,Country B
+positifs,positive
+Région:,Area:
+Régression Cas,Case Regression
+Régression linéaire,Linear regression
+Régression Mortalité,Mortality Regression
+Régression poly 2,Poly 2 regression
+Régression poly 3,Poly 3 regression
+Régression Retablis,Recovery Regression
+Relevé:,Report:
+Rendre compte des échelles de grandeur:,Report on size scales:
+Retablis,Recovered
+"Retablis: ","Recovered: "
+Situation:,Situation:
+Taux,Rates
+Taux de letalite,Fatality rate
+taux de mortalite,mortality rate
+Taux de mortalite,Mortality rate
+Taux de retablissement,Recovery rate
+taux retablissement,recovery rate

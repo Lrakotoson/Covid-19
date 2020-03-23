@@ -43,7 +43,8 @@ bs_modal(
         "English" = "en",
         "Español" = "es",
         "Français" = "fr",
-        "Hindi" = "hi"
+        "Hindi" = "hi",
+        "Polski" = "pl"
         
       ),
       selected = "fr"

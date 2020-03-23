@@ -1,18 +1,20 @@
 ---
 title: "COVID-19"
-output: 
+resource_files:
+- translation/translation_en.csv
+- translation/translation_es.csv
+runtime: shiny
+output:
   flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
-    theme: united
     favicon: www/favicon.ico
     includes:
       in_header: www/meta.html
     navbar:
-      - { title: "<i class='fab fa-github fa-lg'></i> &nbsp; Credits",
-          href: "https://github.com/Lrakotoson/Covid-19" }
-runtime: shiny
-
+    - href: https://github.com/Lrakotoson/Covid-19
+      title: <i class='fab fa-github fa-lg'></i> &nbsp; Credits
+    orientation: columns
+    theme: united
+    vertical_layout: fill
 ---
 
 

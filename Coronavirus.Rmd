@@ -3,6 +3,7 @@ title: "COVID-19"
 resource_files:
 - translation/translation_en.csv
 - translation/translation_es.csv
+- translation/translation_hi.csv
 runtime: shiny
 output:
   flexdashboard::flex_dashboard:
@@ -41,7 +42,9 @@ bs_modal(
       choices = c(
         "English" = "en",
         "Español" = "es",
-        "Français" = "fr"
+        "Français" = "fr",
+        "Hindi" = "hi"
+        
       ),
       selected = "fr"
     ),

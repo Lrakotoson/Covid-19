@@ -6,7 +6,15 @@
 </a>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=for-the-badge)](#contributors-)
+![GitHub](https://img.shields.io/github/license/Lrakotoson/Covid-19?style=for-the-badge)
+[![Work](https://img.shields.io/badge/kernel-shiny-blue?style=for-the-badge&logo=R)](https://loicrakotoson.com/Covid-19/)
+
+Dashboard to follow in real time the evolution of Coronavirus in the World.
+
+[![Run Dashboard](https://img.shields.io/badge/-RUN%20DASHBOARD-red?style=for-the-badge&logo=imgur&logoColor=white&color=99004d)](https://loicrakotoson.com/Covid-19/)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </div>
 

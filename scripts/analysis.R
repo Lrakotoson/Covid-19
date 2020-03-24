@@ -78,6 +78,11 @@ compare_data <- function(situation, Country1, Country2, t1, t2 = ncol(T_cas)-4){
       T_morts[,5:ncol(T_morts)]*100/(T_morts[,5:ncol(T_morts)] + T_retablis[,5:ncol(T_morts)] + 1)
     )
   } else if (situation == "Letalite"){
+    
+    # (temp)
+    T_cas <- T_cas_g
+    T_morts <- T_morts_g
+    
     data <- cbind(
       T_morts[,1:4],
       T_morts[,5:ncol(T_morts)]*100/(T_cas[,5:ncol(T_morts)] + 1)
@@ -90,7 +95,7 @@ compare_data <- function(situation, Country1, Country2, t1, t2 = ncol(T_cas)-4){
     )
   } else {
     aggreg <- T
-    data <- T_cas
+    data <- T_cas_g # (temp)
   }
   
   data <- data %>%

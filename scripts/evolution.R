@@ -96,6 +96,11 @@ timeserie <- function(region = i18n()$t("Monde")){
   #' Renvoie un tibble des données en séries temporelles
   #' region: Region/Continent
   
+  # (temp)
+  T_cas <- T_cas_g
+  T_morts <- T_morts_g
+  
+  
   fusion <- function(table, name, region = i18n()$t("Monde")){
     #' Renvoie un tibble de la table en série temporelle
     #' name: nom de la variable Cas/Morts/Retablis

@@ -20,6 +20,13 @@ clean <- function(data){
 T_cas <<- clean(T_cas)
 T_retablis <<- clean(T_retablis)
 T_morts <<- clean(T_morts)
+
+# (temp)
+T_morts_g <- read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")
+T_cas_g <- read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+T_cas_g <<- clean(T_cas_g)
+T_morts_g <<- clean(T_morts_g)
+
 ####################################################################
 
 continent <- function(lon, lat){
@@ -39,6 +46,11 @@ continent <- function(lon, lat){
 latest <- function(t = ncol(T_cas) - 4){
   #' Retourne les données les plus récentes à l'instant t
   #' t: temps, entier >= 1
+  
+  # (temp)
+  T_cas <- T_cas_g
+  T_morts <- T_morts_g
+  
   
   if (t > ncol(T_morts) - 4 | t > ncol(T_retablis) - 4){
     t <- min(ncol(T_morts), ncol(T_retablis)) - 4

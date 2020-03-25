@@ -75,6 +75,15 @@
         "ideas",
         "example"
       ]
+    },
+    {
+      "login": "BojanMakivic",
+      "name": "Bojan Makivic",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/59933743?v=4",
+      "profile": "https://github.com/BojanMakivic",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,

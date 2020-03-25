@@ -1,51 +1,51 @@
-fr;sr
-A la une;Naslov
-Actifs;Aktivni
-Ajustement de la période sous chaque graphe.;Korekcija perioda ispod svakog grafikona
-Analyse Cas;Analiza obolelih slu?ajeva
-Analyse de la carte;Geografska analiza
-Analyse de la répartition géographiques des <strong>cas/ rétablis/ morts</strong> en fonction du <strong>temps</strong>.;Analiza geografske distribucije <strong> slu?ajeva/ oporavljenih/ umrlih</strong> u <strong> oder?enom vremenskom periodu</strong>.
-Analyse Décès;Analiza umrlih
-Analyse en fonction du temps;Analiza u funkciji vremena
-Analyse par région;Regionalna analiza
-Analyse Rétablis;Analiza oporavljenih
-Aucune;Niko
-Cas;Slucaj
-Deces: ;Umrli:
-Domaine;Domena
-dont;uklju?uju?i
-Echelle logarithmique;Logaritamska skala
-Echelle logarithmique Mortalité;Logaritamska skala umrlih
-Echelle logarithmique nombre Cas;Logaritamska skala obolelih
-Echelle logarithmique Retablis;Logaritamska skala oporavljenih
-Evolution;Proces odvijanja 
-L’actualisation de cette variable globale permet la mise à jour des 3 fenêtres.;A�uriranje globalne varijable ?e a�urirati i ostala 3 grafika
-Letalite;Broj �rtava
-Monde;Svet
-Morts;Umrli:
-Nombre de Cas Actifs;Broj aktivnih obolelih
-Nombre de cas: ;Broj obolelih:
-Nombre jours à prédire;Dani obuhva?eni prognozom
-Nouveaux;Novi
-Nouveaux Cas;Novi oboleli slu?ajevi
-Pays A;Dr�ava A
-Pays B;Dr�ava B
-positifs;pozitivni
-Région:;Region
-Régression Cas;Regresiona analiza obolelih
-Régression linéaire;Linearna regresija
-Régression Mortalité;Regresiona analiza umrlih
-Régression poly 2;Regresiona analiza Poly 2
-Régression poly 3;Regresiona analiza Poly 3
-Régression Retablis;Regresiona analiza oporavljenih
-Relevé:;Izve�taj
-Rendre compte des échelles de grandeur:;Izve�taj za veli?inu skale
-Retablis;Oporavljeni
-Retablis: ;Oporavljeni:
-Situation:;Situacija:
-Taux;Stepen
-Taux de letalite;Stopa fatalnosti
-taux de mortalite;stopa smrtnosti
-Taux de mortalite;Stopa smrtnosti
-Taux de retablissement;Stopa oporavljenih
-taux retablissement;stopa oporavljenih
+fr,sr
+A la une,Naslov
+Actifs,Aktivni
+Ajustement de la période sous chaque graphe.,Korekcija perioda ispod svakog grafikona.
+Analyse Cas,Analiza obolelih slu?ajeva
+Analyse de la carte,Geografska analiza
+Analyse de la répartition géographiques des <strong>cas/ rétablis/ morts</strong> en fonction du <strong>temps</strong>.,Analiza geografske distribucije <strong> slučajeva/ oporavljenih/ umrlih</strong> oderđenom vremenskom <strong>periodu</strong>.
+Analyse Décès,Analiza umrlih
+Analyse en fonction du temps,Analiza u funkciji vremena
+Analyse par région,Regionalna analiza
+Analyse Rétablis,Analiza oporavljenih
+Aucune,Niko
+Cas,Slucaj
+"Deces: ","Umrli: "
+Domaine,Domena
+dont,uključujući
+Echelle logarithmique,Logaritamska skala
+Echelle logarithmique Mortalité,Logaritamska skala umrlih
+Echelle logarithmique nombre Cas,Logaritamska skala obolelih
+Echelle logarithmique Retablis,Logaritamska skala oporavljenih
+Evolution,Proces odvijanja
+L’actualisation de cette variable globale permet la mise à jour des 3 fenêtres.,Ažuriranje globalne varijable a urirati i ostala 3 grafika
+Letalite,Smrtonosnost
+Monde,Svet
+Morts,Umrli
+Nombre de Cas Actifs,Broj aktivnih obolelih
+"Nombre de cas: ",Broj obolelih:
+Nombre jours à prédire,Dani obuhva?eni prognozom
+Nouveaux ,Novi
+Nouveaux Cas,Novi Slucaj
+Pays A,Država A
+Pays B,Država B
+positifs,pozitivni
+Région:,Region
+Régression Cas,Regresiona analiza obolelih
+Régression linéaire,Linearna regresija
+Régression Mortalité,Regresiona analiza umrlih
+Régression poly 2,Regresiona analiza Poly 2
+Régression poly 3,Regresiona analiza Poly 3
+Régression Retablis,Regresiona analiza oporavljenih
+Relevé:,Izjava
+Rendre compte des échelles de grandeur:,Izveštaj za veličinu skale
+Retablis,Oporavljeni
+"Retablis: ",Oporavljeni:
+Situation:,Situacija:
+Taux,Stepen
+Taux de letalite,Stopa fatalnosti
+taux de mortalite,stopa smrtnosti
+Taux de mortalite,Stopa smrtnosti
+Taux de retablissement,Stopa oporavljenih
+taux retablissement,stopa oporavljenih

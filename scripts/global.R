@@ -4,28 +4,28 @@ library(sp)
 library(rworldmap)
 library(rgdal)
 
-T_cas <- read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv')
-T_retablis <- read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv')
-T_morts <- read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv')
+# T_cas <- read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv')
+# T_retablis <- read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv')
+# T_morts <- read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv')
 geodata <- rgdal::readOGR("scripts/custom.geo.json")
-####################################################################
-
-clean <- function(data){
-  data <- data %>% 
-    rename(State = 'Province/State', Country = 'Country/Region') %>%
-    mutate(State = coalesce(State, Country))
-  return(data)
-}
-  
-T_cas <<- clean(T_cas)
-T_retablis <<- clean(T_retablis)
-T_morts <<- clean(T_morts)
-
-# (temp)
-T_morts_g <- read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")
-T_cas_g <- read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
-T_cas_g <<- clean(T_cas_g)
-T_morts_g <<- clean(T_morts_g)
+# ####################################################################
+# 
+# clean <- function(data){
+#   data <- data %>% 
+#     rename(State = 'Province/State', Country = 'Country/Region') %>%
+#     mutate(State = coalesce(State, Country))
+#   return(data)
+# }
+#   
+# T_cas <<- clean(T_cas)
+# T_retablis <<- clean(T_retablis)
+# T_morts <<- clean(T_morts)
+# 
+# # (temp)
+# T_morts_g <- read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")
+# T_cas_g <- read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+# T_cas_g <<- clean(T_cas_g)
+# T_morts_g <<- clean(T_morts_g)
 
 ####################################################################
 
@@ -48,8 +48,8 @@ latest <- function(t = ncol(T_cas) - 4){
   #' t: temps, entier >= 1
   
   # (temp)
-  T_cas <- T_cas_g
-  T_morts <- T_morts_g
+  # T_cas <- T_cas_g
+  # T_morts <- T_morts_g
   
   
   if (t > ncol(T_morts) - 4 | t > ncol(T_retablis) - 4){

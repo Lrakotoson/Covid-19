@@ -82,6 +82,7 @@ i18n <<- reactive({
 
 
 ```{r global, include=FALSE}
+source('scripts/transition.R')
 source('scripts/global.R')
 source('scripts/evolution.R')
 source('scripts/analysis.R')
@@ -366,7 +367,7 @@ fillCol(
         selectInput(
           "Country1",
           i18n()$t("Pays A"),
-          c(brief("Country")$group, i18n()$t("Monde")),
+          c(brief("Country")$group, i18n()$t("Aucune")),
           "France"
           )
         }),
@@ -374,7 +375,7 @@ fillCol(
         selectInput(
           "Country2",
           i18n()$t("Pays B"),
-          c(brief("Country")$group, i18n()$t("Monde")),
+          c(brief("Country")$group, i18n()$t("Aucune")),
           "Italy"
          )
         }),

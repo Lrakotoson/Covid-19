@@ -97,8 +97,8 @@ timeserie <- function(region = i18n()$t("Monde")){
   #' region: Region/Continent
   
   # (temp)
-  T_cas <- T_cas_g
-  T_morts <- T_morts_g
+  # T_cas <- T_cas_g
+  # T_morts <- T_morts_g
   
   
   fusion <- function(table, name, region = i18n()$t("Monde")){

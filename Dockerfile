@@ -28,6 +28,13 @@ COPY scripts /bin/scripts
 COPY translation /bin/translation
 COPY www /bin/www
 
+RUN mkdir -p /opt/shinyproxy/
+RUN wget https://www.shinyproxy.io/downloads/shinyproxy-2.3.0.jar -O /opt/shinyproxy/shinyproxy.jar
+COPY application.yml /opt/shinyproxy/application.yml
+
+RUN chmod -R 755 /opt/shinyproxy/
+RUN useradd shinyproxy -u 1000 -d /opt/shinyproxy && chown -R shinyproxy /opt/shinyproxy/
+WORKDIR /opt/shinyproxy/config
 
 # make all app files readable (solves issue when dev in Windows, but building in Ubuntu)
 RUN chmod -R 755 /bin
@@ -36,4 +43,5 @@ RUN chmod -R 755 /bin
 EXPOSE 3838
 
 # run flexdashboard as localhost and on exposed port in Docker container
-CMD ["R", "-e", "rmarkdown::run('/bin/Coronavirus.Rmd', shiny_args = list(port = 3838, host = '0.0.0.0'))"]
+CMD ["java", "-jar", "/opt/shinyproxy/shinyproxy.jar"]
+#CMD ["R", "-e", "rmarkdown::run('/bin/Coronavirus.Rmd', shiny_args = list(port = 3838, host = '0.0.0.0'))"]

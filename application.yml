@@ -1,0 +1,21 @@
+proxy:
+    title: CoronaVirus disease 19 Dashboard
+    hide-navbar: true
+    landing-page: /
+    port: 3838
+    authentication: none
+    docker:
+      internal-networking: true    
+  
+    specs:
+  
+    - id: 07_test
+      display-name: Covid19 Board
+      description: Application which demonstrates the basics of Flexdashboard
+      container-cmd: ["R", "-e", "rmarkdown::run('/bin/Coronavirus.Rmd', shiny_args = list(port = 3838, host = '0.0.0.0'))"]
+      container-image: coronavirus
+      container-network:  covid-net
+  
+  logging:
+    file:
+     shinyproxy.log

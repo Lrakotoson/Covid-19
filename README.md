@@ -7,7 +7,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=for-the-badge)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=for-the-badge)](#contributors-)
 ![GitHub](https://img.shields.io/github/license/Lrakotoson/Covid-19?style=for-the-badge)
 [![Work](https://img.shields.io/badge/kernel-shiny-blue?style=for-the-badge&logo=R)](https://loicrakotoson.com/Covid-19/)
 
@@ -37,6 +37,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Gauraviitkgp"><img src="https://avatars3.githubusercontent.com/u/23613158?v=4" width="100px;" alt=""/><br /><sub><b>Gaurav Suryawanshi</b></sub></a><br /><a href="#translation-Gauraviitkgp" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/llubosz"><img src="https://avatars2.githubusercontent.com/u/2283771?v=4" width="100px;" alt=""/><br /><sub><b>Łukasz Lubosz</b></sub></a><br /><a href="#translation-llubosz" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/hershkoy"><img src="https://avatars3.githubusercontent.com/u/13259380?v=4" width="100px;" alt=""/><br /><sub><b>hershkoy</b></sub></a><br /><a href="#ideas-hershkoy" title="Ideas, Planning, & Feedback">🤔</a> <a href="#example-hershkoy" title="Examples">💡</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/BojanMakivic"><img src="https://avatars1.githubusercontent.com/u/59933743?v=4" width="100px;" alt=""/><br /><sub><b>Bojan Makivic</b></sub></a><br /><a href="#translation-BojanMakivic" title="Translation">🌍</a></td>
   </tr>
 </table>
 

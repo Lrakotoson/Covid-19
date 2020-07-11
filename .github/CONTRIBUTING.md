@@ -20,7 +20,6 @@ There are generally 3 types of contributions: translation, bug and new feature
 2. Clone your fork from the repository to your local storage. Keep it synchronized with the original repository in case of major changes using an upstream: [Learn more](https://help.github.com/en/github/getting-started-with-github/fork-a-repo).
 ```bash
 $ git clone git@github.com:USERNAME/Covid-19.git
-$ cd Jobtimize
 ```
 
 3. Create a specific branch for your `feature` where you will implement it. Creating a branch allows you to perform tests without the risk of affecting the main program.
